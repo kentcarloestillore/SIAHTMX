@@ -38,24 +38,23 @@ class ProductController extends Controller
         return response($html);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'name' => 'required|string',
+            'description' => 'required|string',
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
             'imgUrl' => 'required|url',
         ]);
     
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+        if($validator->fails()) {
+            $products = Product::orderBy('name')->get();
+            return view('template._create-products-error', ['errors'=>$validator->errors(), 'products'=>$products]);
         }
     
         Product::create($request->all());
-        
         $products = Product::orderBy('name')->get();
     
-        return view('template._products-list', ['products' => $products]);
+        return  view('template._products-list', ['products' => $products]);
     }
 }

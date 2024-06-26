@@ -49,24 +49,30 @@
                     @csrf
                     <div class="mb-4">
                         <label for="productName" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="productName" name="name" required>
+                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="productName" name="name">
+                        <div id="name_error" class="text-danger"></div>
                     </div>
                     <div class="mb-4">
                         <label for="productDescription" class="block text-sm font-medium text-gray-700">Description</label>
-                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="productDescription" name="description" required>
+                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="productDescription" name="description">
+                        <div id="description_error" class="text-danger"></div>
                     </div>
                     <div class="mb-4">
                         <label for="productQuantity" class="block text-sm font-medium text-gray-700">Quantity</label>
-                        <input type="number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="productQuantity" name="quantity" required>
+                        <input type="number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="productQuantity" name="quantity">
+                        <div id="quantity_error" class="text-danger"></div>
                     </div>
                     <div class="mb-4">
                         <label for="productPrice" class="block text-sm font-medium text-gray-700">Price</label>
-                        <input type="number" step="0.01" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="productPrice" name="price" required>
+                        <input type="number" step="0.01" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="productPrice" name="price">
+                        <div id="price_error" class="text-danger"></div>
                     </div>
                     <div class="mb-4">
                         <label for="img" class="block text-sm font-medium text-gray-700">Image Link</label>
                         <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="img" name="imgUrl">
+                        <div id="img_error" class="text-danger"></div>
                     </div>
+                    <div id="addProductMessage" class=""></div>
                     <div class="flex justify-end">
                         <button type="button" id="cancelButton" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">Cancel</button>
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button>
@@ -81,8 +87,15 @@
         const cancelButton = document.getElementById('cancelButton');
         const modal = document.getElementById('addProductModal');
 
+     
         openModalButton.addEventListener('click', () => {
             modal.classList.remove('hidden');
+            document.getElementById('addProductMessage').innerHTML = "";
+            document.getElementById('name_error').innerHTML = "";
+            document.getElementById('description_error').innerHTML = "";
+            document.getElementById('quantity_error').innerHTML = "";
+            document.getElementById('price_error').innerHTML = "";
+            document.getElementById('img_error').innerHTML = "";
         });
 
         closeModalButton.addEventListener('click', () => {
