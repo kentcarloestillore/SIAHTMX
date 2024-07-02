@@ -30,8 +30,11 @@
     <div id="product_list" 
         class="flex flex-wrap gap-3 mt-5"
         hx-get="api/products"
-        hx-trigger="load delay:200ms"
+        hx-trigger="load delay:1000ms"
         hx-swap="innerHTML">
+    </div>
+    <div id="editModal" 
+        class="flex flex-wrap gap-3 mt-5">
     </div>
     <div id="addProductModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
         <div class="bg-white rounded-lg shadow-lg w-11/12 md:w-1/3">
